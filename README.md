@@ -1,1 +1,1 @@
-# ntu-csx_final_demo
+# NTU CS-X 期末成果展
