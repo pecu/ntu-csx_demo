@@ -1,35 +1,31 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Demo Day</title>
-  <link rel="stylesheet" type="text/css" href="./css/presentation.css">
+    <meta charset="UTF-8">
+    <title>Demo Day</title>
+    <link rel="stylesheet" type="text/css" href="./css/presentation.css">
 </head>
 
 <body>
-  <div class="fullscreen">
-
-    <div class="qr" style="position: absolute; top: 30px; right: 30px; padding: 3px;background: #fff ;z-index: 11 ; width: 150px;">
-        <img src="./images/ntu-csx.csie.org.png" style="width: 100%;">
+    <div class="fullscreen">
+        <div class="qr" style="position: absolute; top: 30px; right: 30px; padding: 3px;background: #fff ;z-index: 11 ; width: 150px;">
+            <img src="./images/ntu-csx.csie.org.png" style="width: 100%;">
+        </div>
+        <iframe id="data-frame" src="" frameborder="0"></iframe>
+        <div class="clock">
+            <p id="time_left"></p>
+            <ul>
+                <li id="pre">&lt;</li>
+                <li id="playpause">▶</li>
+                <li id="reset">↺</li>
+                <li id="jump">+</li>
+                <li id="next">&gt;</li>
+            </ul>
+        </div>
     </div>
-
-    <iframe id="data-frame" src="" frameborder="0"></iframe>
-
-    <div class="clock">
-      <p id="time_left"></p>
-      <ul>
-        <li id="pre"><</li>
-        <li id="playpause">▶</li>
-        <li id="reset">↺</li>
-        <li id="jump">+</li>
-        <li id="next">></li>
-      </ul>
-    </div>
-  </div>
 </body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-<script type="text/javascript" src="./js/query.js"></script>
-<script type="text/javascript" src="./js/list.js"></script>
-<script src="js/presentation.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script type="text/javascript" src="js/gsheets.js"></script>
+<script type="text/javascript" src="js/presentation.js"></script>
 
 </html>
