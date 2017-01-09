@@ -15,7 +15,7 @@ var getScore = function(callback) {
     queryData(options, function(response) {
 
         if (response.result) {
-            chart.data[0].radius = [1, 1, 1, 1, 1, 1];
+
             console.log(response.data);
         } else {
             console.log(response);
@@ -41,8 +41,15 @@ var getScoreName = function(callback) {
     });
 };
 
+var updateScore = function() {
+    mychart._.chart.data[0].radius = [1, 1, 1, 1, 1, 1];
+    mychart.parse();
+    mychart.update();
+};
+
 getScoreName();
 getScore();
+updateScore();
 // $(window).load(function() {
 //     getScoreName();
 // });
