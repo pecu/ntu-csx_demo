@@ -3,92 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" type="text/css" href="css/score.css">
+
+
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/TeamQuery.js"></script>
-	<!--<script type="text/javascript" src="js/list.js"></script>-->
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <style>
-        .ui-controlgroup-vertical {
-            width: 150px;
-            align: center;
-        }
-        /*
-              .ui-controlgroup.ui-controlgroup-vertical > button.ui-button,
-              .ui-controlgroup.ui-controlgroup-vertical > .ui-controlgroup-label {
-                text-align: center;
-              }
-        	  
-              #car-type-button {
-                width: 120px;
-              }
-              .ui-controlgroup-horizontal .ui-spinner-input {
-                width: 20px;
-              }
-        	  */
-    </style>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script>
-        $(function() {
-            $(".controlgroup").controlgroup()
-            $(".controlgroup-vertical").controlgroup({
-                "direction": "vertical"
-            });
-        });
-    </script>
-    <script>
-        function CalcScore() {}
 
-        function CalcScore1(itemNum) {
-            Gps = [
-                    [document.myForm.Gp1_1, document.myForm.Gp1_2, document.myForm.Gp1_3],
-                    [document.myForm.Gp2_1, document.myForm.Gp2_2],
-                    [document.myForm.Gp3_1, document.myForm.Gp3_2],
-                    [document.myForm.Gp4_1, document.myForm.Gp4_2],
-                    [document.myForm.Gp5_1, document.myForm.Gp5_2, document.myForm.Gp5_3]
-                ]
-                //alert("call CalcScore OK "+ itemNum);
-            var sum = 0;
-            var ct = 0;
-            var score = 0;
-            for (var i = 0; i < 3; i++) {
-                qexist = document.getElementsByName('Gp' + itemNum + '_' + (i + 1));
-                if (qexist.length > 0) {
-                    ct++;
-                    //alert(1);
-                    for (s = 0; s < 5; s++)
-                        if (Gps[itemNum - 1][i][s].checked) {
-                            score = 5 - s;
-                        }
-                    sum += score;
-                }
-            }
-            //alert(sum);
-            sc = "score" + itemNum;
-            eval(sc).value = sum / ct;
-        }
-
-        function RadioGen(itemNum, QueNum) {
-            document.write('<div class="controlgroup-vertical" >');
-            for (var r = 5; r > 0; --r) {
-                document.write('<label for="est' + itemNum + '_' + QueNum + '_' + r + '">' + r + '</label>');
-                document.write('<input type="radio" name="Gp' + itemNum + '_' + QueNum + '" id="est' + itemNum + '_' + QueNum + '_' + r + '" onClick="CalcScore1(' + itemNum + ');">');
-            }
-            document.write('</div>');
-        }
-
-        function formSubmit() {
-            ans = confirm("請問確定要送出嗎？成績送出後無法更改！");
-            if (!ans) {
-                //alert("No");
-                return;
-            }
-            document.getElementById("myForm").submit()
-        }
-    </script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/gsheets.js"></script>
+    <script src="js/score.js"></script>
 </head>
 
 <body>
@@ -101,9 +31,9 @@
                             <thead>
                                 <tr>
                                     <td colspan="6">
-										組別ID:<input type="text" name="TeamID" disabled="" size="5">
-										組名:<input type="text" name="TeamName" disabled="" size="20" style="display:none">
-										<select id="select" name="items" width="10">
+                                        組別ID:<input type="text" name="TeamID" disabled="" size="5"> 組名:
+                                        <input type="text" name="TeamName" disabled="" size="20" style="display:none">
+                                        <select id="select" name="items" width="10">
 										  <!--
 										  <option value="1">一</option>
 										  <option value="2">二</option>
@@ -225,7 +155,7 @@
                                     <td colspan="5">評審ID:
                                         <input type="text" name="JudgeID" disabled="" size="5">姓名:
                                         <input type="text" name="JudgeName" disabled="" size="20" style="display:none">
-										<select id="JudgeNames" name="JudgeNames" width="10">
+                                        <select id="JudgeNames" name="JudgeNames" width="10">
 										</select>
                                     </td>
                                     <td align="right">
