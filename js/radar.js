@@ -28,6 +28,6 @@ var getScoreName = function(callback) {
 };
 
 
-$(window).load(function() {
-    getScoreName();
-});
+// $(window).load(function() {
+//     getScoreName();
+// });
