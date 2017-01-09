@@ -9,11 +9,12 @@ $('#query').on('click', function() {
         sheet: 'team_score',
     };
 
-    var filter = {
-        team_id: 1
-    };
+    var filter = [{
+        team_id: 1,
+        reviewer_id: 1
+    }];
     var data = {
-        reviewer_id: 1,
+
         score_1: 5,
         score_2: 5,
         score_3: 5,
