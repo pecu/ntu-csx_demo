@@ -1,4 +1,7 @@
 $('#query').on('click', function() {
+    if (formSubmit() == 0){
+        return ;
+    }
     // 設定查詢資料
     // dev api = https://script.google.com/a/macros/csie.ntu.edu.tw/s/AKfycbx2VJc30mJ_EeQ2zN_8W0EYBoHf5yhyeuflgzx_bl6H/dev
     // exe api = https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec'
@@ -9,18 +12,20 @@ $('#query').on('click', function() {
         sheet: 'team_score',
     };
 
-    var filter = [{
-        team_id: 1,
-        reviewer_id: 1
-    }];
-    var data = {
-
-        score_1: 5,
-        score_2: 5,
-        score_3: 5,
-        score_4: 5,
-        score_5: 5
+    var filter = {
+        team_id: $("input[name$='TeamID']")[0].value
     };
+    var data = {
+        reviewer_id: $("input[name$='JudgeID']")[0].value,
+        score_1: $("input[name$='score1']")[0].value,
+        score_2: $("input[name$='score2']")[0].value,
+        score_3: $("input[name$='score3']")[0].value,
+        score_4: $("input[name$='score4']")[0].value,
+        score_5: $("input[name$='score5']")[0].value
+    };
+
+    //console.log(filter);
+    //console.log(data);
 
     options.data = data;
     options.filter = filter;
