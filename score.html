@@ -27,7 +27,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-striped">
-                        <form id="myForm" name="myForm" action="result.php" method="post" enctype="application/json">
+                        <!--<form id="myForm" name="myForm" action="result.php" method="post" enctype="application/json">-->
+                        <form id="myForm" name="myForm" method="post" enctype="application/json">
                             <thead>
                                 <tr>
                                     <td colspan="6">
@@ -159,7 +160,8 @@
 										</select>
                                     </td>
                                     <td align="right">
-                                        <input type="button" onclick="formSubmit()" value="送出" class="btn btn-primary">
+                                        <!--<input type="button" onclick="formSubmit()" value="送出" class="btn btn-primary">-->
+                                        <button id="query" type="button" class="btn btn-primary">Submit</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -170,7 +172,7 @@
         </div>
     </div>
 
-
+<script src="js/scoreSubmit.js"></script>
 </body>
 
 </html>

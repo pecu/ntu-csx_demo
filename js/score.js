@@ -44,7 +44,7 @@ function formSubmit() {
         //alert("No");
         return;
     }
-    document.getElementById("myForm").submit()
+    //document.getElementById("myForm").submit()
 }
 
 
