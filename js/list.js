@@ -5,9 +5,10 @@ $('#query').on('click', function() {
         //api: 'https://script.google.com/a/macros/csie.ntu.edu.tw/s/AKfycbx2VJc30mJ_EeQ2zN_8W0EYBoHf5yhyeuflgzx_bl6H/dev',
         sheet: 'team_list'
     };
-    var filter = {
-        team_id: 23
-    };
+    var filter = [
+        { team_id: 23 },
+        { team_id: 22 }
+    ];
     options.filter = filter;
 
     // 查詢資料
