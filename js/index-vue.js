@@ -3,7 +3,6 @@ var team_card_group = new Vue({
     data: {
         teams: []
     },
-    component: 'team_card',
     beforeCreate: function() {
         var options = {
             api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
