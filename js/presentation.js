@@ -4,7 +4,7 @@ var initEvent = function() {
     var l = link.length;
     var a = 0;
 
-    var COUNT_START = 1 * 5 * 10; // tenths * seconds * hours
+    var COUNT_START = 10 * 5 * 60; // tenths * seconds * hours
     var count = COUNT_START;
     var playing = false;
 
@@ -122,8 +122,6 @@ var initData = function(callback) {
         sheet: 'team_list'
     };
 
-    // console.log(1);
-
     // 查詢資料
     queryData(options, function(response) {
 
@@ -134,7 +132,7 @@ var initData = function(callback) {
 }
 
 initData(function(data) {
-    var link = [];
+    link = [];
 
     for(var i = 0; i < data.length; i++) {
         link.push(data[i].slide_url);
