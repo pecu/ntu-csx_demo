@@ -1,48 +1,59 @@
-var mychart = new plotdb.view.chart(chart, { data: chart.data });
-mychart.attach(document.getElementById("wrapper"));
+var chartData = [
+    { "radius": [], "order": "創意" },
+    { "radius": [], "order": "實踐" },
+    { "radius": [], "order": "溝通協作" },
+    { "radius": [], "order": "專題報告表現" },
+    { "radius": [], "order": "專業技術" }
+];
 
-console.log(chart.data);
+function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
 
-for (var key in chart.data) {
-    console.log(chart.data[key].order);
-}
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
 
 var getScore = function(callback) {
+
     var options = {
         api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
-        sheet: 'team_score'
+        sheet: 'team_score',
+        filter: {
+            team_id: parseInt(getUrlParameter('team_id'))
+        }
     };
     queryData(options, function(response) {
-
         if (response.result) {
-            chart.data[0].radius = [1, 1, 1, 1, 1, 1];
-            console.log(response.data);
-        } else {
-            console.log(response);
+            for(var key in response.data) {
+                for(var i in response.data[key]) {
+                    for(number in chartData) {
+                        if(i == 'score_1') {
+                            chartData[0].radius[key] = response.data[key]['score_1'];
+                        } else if(i == 'score_2') {
+                            chartData[1].radius[key] = response.data[key]['score_2'];
+                        } else if(i == 'score_3') {
+                            chartData[2].radius[key] = response.data[key]['score_3'];
+                        } else if(i == 'score_4') {
+                            chartData[3].radius[key] = response.data[key]['score_4'];
+                        } else if(i == 'score_5') {
+                            chartData[4].radius[key] = response.data[key]['score_5'];
+                        }
+                    }
+                }
+            }
+            var mychart = new plotdb.view.chart(chart, { data: chartData });
+            mychart.attach(document.getElementById("wrapper"));
         }
     });
 };
 
-// 取得分數名稱的資料
-var getScoreName = function(callback) {
-    var options = {
-        api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
-        sheet: 'score_table'
-    };
-
-    queryData(options, function(response) {
-
-        if (response.result) {
-
-            console.log(response.data);
-        } else {
-            console.log(response);
-        }
-    });
-};
-
-getScoreName();
 getScore();
-// $(window).load(function() {
-//     getScoreName();
-// });
