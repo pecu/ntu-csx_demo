@@ -1,19 +1,29 @@
 /**
  * 抓取 Google Sheet 的資料，並且以 JSON 格式回傳
  * @param {any} options
- *              action = 'query'; 設定為抓取的動作為查詢
+ *              action = 'search'; 設定為抓取的動作為查詢
  *
  * @param {any} callback
  * @author kchen.tw
- * @since 0.1.0 11/07/2016 kchen.tw
- * @version 0.1.0
+ * @since 0.1.1 01/09/2017 kchen.tw
+ * @version 0.1.1
  *
  */
 function queryData(options, callback) {
     var defaults = {
-        action: 'qurey',
+        action: 'search',
     };
+
     var params = $.extend({}, defaults, options);
+
+    var op = ['data', 'filter'];
+    for (var idx in op) {
+        if (params[op[idx]] && !Array.isArray(params[op[idx]])) {
+            params[op[idx]] = [params[op[idx]]];
+        }
+        params[op[idx]] = JSON.stringify(params[op[idx]] || []);
+    }
+
     request = $.ajax({
         url: options.api,
         type: 'post',
@@ -30,8 +40,4 @@ function queryData(options, callback) {
             textStatus, errorThrown
         );
     });
-}
-
-function a() {
-
 }
