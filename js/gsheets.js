@@ -5,8 +5,8 @@
  *
  * @param {any} callback
  * @author kchen.tw
- * @since 0.1.0 11/07/2016 kchen.tw
- * @version 0.1.0
+ * @since 0.1.1 01/09/2017 kchen.tw
+ * @version 0.1.1
  *
  */
 function queryData(options, callback) {
@@ -15,10 +15,15 @@ function queryData(options, callback) {
     };
 
     var params = $.extend({}, defaults, options);
-    // params.data = params.data || [];
-    // params.filter = params.filter || [];
-    params.data = JSON.stringify(params.data || []);
-    params.filter = JSON.stringify(params.filter || []);
+
+    var op = ['data', 'filter'];
+    for (var idx in op) {
+        if (params[op[idx]] && !Array.isArray(params[op[idx]])) {
+            params[op[idx]] = [params[op[idx]]];
+        }
+        params[op[idx]] = JSON.stringify(params[op[idx]] || []);
+    }
+
     request = $.ajax({
         url: options.api,
         type: 'post',
