@@ -1,3 +1,7 @@
+.navbar-default {
+    background-color: rgba(33, 33, 33, 0.9);
+}
+
 .pdb-root {
     width: 100vw;
     width: -moz-calc(100vw - 30px);
@@ -10,6 +14,18 @@
     font-family: 'Varela Round', "微軟正黑體", sans-serif;
     box-sizing: border-box;
     padding-bottom: 0;
+}
+
+@media(max-width:48em) {
+    .navbar-default {
+        visibility: hidden;
+    }
+}
+
+@media(min-width:48em) {
+    .pdb-root {
+        margin-top: 74px;
+    }
 }
 
 .pdb-root svg {
