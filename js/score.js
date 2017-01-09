@@ -42,9 +42,9 @@ function formSubmit() {
     ans = confirm("請問確定要送出嗎？成績送出後無法更改！");
     if (!ans) {
         //alert("No");
-        return;
+        return 0;
     }
-    //document.getElementById("myForm").submit()
+    document.getElementById("myForm").submit()
 }
 
 
@@ -62,7 +62,7 @@ var options2 = {
 
 
 queryData(options, function(res) {
-    console.log(res);
+    //console.log(res);
     //console.log(res.data.length)
     var tlen = res.data.length;
     $("input[name$='TeamID']").val(res.data[0].team_id);
@@ -90,7 +90,7 @@ queryData(options, function(res) {
 });
 
 queryData(options2, function(res) {
-    console.log(res);
+    //console.log(res);
 
     var jlen = res.data.length;
     $("input[name$='JudgeID']").val(res.data[0].reviewer_id);

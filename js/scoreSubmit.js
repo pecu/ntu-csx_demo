@@ -1,5 +1,7 @@
 $('#query').on('click', function() {
-    formSubmit();
+    if (formSubmit() == 0){
+        return ;
+    }
     // 設定查詢資料
     // dev api = https://script.google.com/a/macros/csie.ntu.edu.tw/s/AKfycbx2VJc30mJ_EeQ2zN_8W0EYBoHf5yhyeuflgzx_bl6H/dev
     // exe api = https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec'
@@ -21,6 +23,9 @@ $('#query').on('click', function() {
         score_4: $("input[name$='score4']")[0].value,
         score_5: $("input[name$='score5']")[0].value
     };
+
+    //console.log(filter);
+    //console.log(data);
 
     options.data = data;
     options.filter = filter;
