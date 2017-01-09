@@ -4,6 +4,7 @@ html,
 body {
     width: 100%;
     height: 100%;
+    margin:0;
 }
 
 body {
@@ -13,7 +14,70 @@ body {
     top: 0;
 }
 
+header h1{
+    padding-bottom: 50px
+}
+*{
+  box-sizing:border-box
+}
+.link-wrapper{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+.s-block-box{
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 100px 50px ;
+  color: #454545;
+}
+.s-block {
+  width: 33.3333%;
+  padding: 10px;
+  float:left;
+}
+.s-box-img{
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+}
+.s-name{
+    padding:15px;
+    text-align: center;
+}
+.w-name{
+    font-size: 1.2rem;
+}
+.s-box{
+  padding-bottom:0px;
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 3px;
+  box-shadow: 15px 15px 20px 0px rgba(46, 61, 73, 0.15);
+  border-radius: 5px ;
+  overflow: hidden; 
+}
+.clearfix{
+  clear: both;
+}
 
+.footer-img{
+    padding-bottom: 10px
+}
+.w-title{
+    text-align: center;
+    padding: 100px 0 0px;
+    color:#454545;
+    font-size: 2.5rem;
+}
+.w-title h2{
+    font-size: 2.5rem;
+}
+.separator-s{
+  width: 50px;
+  border-bottom: 5px solid #ffc107;
+  margin: 50px auto 0;
+}
 /* workaround modal-open padding issue */
 
 body.modal-open {
@@ -112,7 +176,8 @@ aside {
 footer {
     padding: 45px;
     padding-top: 40px;
-    background-color: #e0e0e3;
+    background-color: #454545;
+    text-align: center
 }
 
 footer h4,
@@ -121,13 +186,14 @@ footer h6 {
 }
 
 .navbar-default {
-    border-color: rgba(35, 35, 35, .05);
+    /*border-color: rgba(35, 35, 35, .05);*/
     /*background-color: #fff;*/
     /*background-color: transparent;*/
-    background: rgba(33, 33, 33, 0.9);
+    /*background: rgba(33, 33, 33, 0.9);*/
     -webkit-transition: all .4s;
     -moz-transition: all .4s;
     transition: all .4s;
+    position: absolute;
 }
 
 .navbar-brand {
@@ -206,6 +272,7 @@ footer h6 {
     .navbar-default {
         border-color: transparent;
         /*background-color: #fff;*/
+
         min-height: 60px;
     }
     .navbar-brand {
@@ -217,11 +284,12 @@ footer h6 {
     }
     .navbar-default .nav>li>a,
     .navbar-default .nav>li>a:focus {
-        color: #999;
+        color: #fff;
         /*color: #001A33;*/
         padding-left: 5px;
         padding-top: 21px;
         letter-spacing: 1.1px;
+
     }
     .navbar-default .nav>li>a:hover,
     .navbar-default .nav>li>a:focus:hover {
@@ -304,7 +372,7 @@ header .header-content .inner p {
 }
 
 .la-wrapper-box {
-    width: 50%;
+    width: 100%;
     height: 100%;
     position: absolute;
     background: rgba(0, 0, 0, 0.6);
@@ -346,17 +414,18 @@ textarea {
 }
 
 .btn-primary-outline {
-    border-color: #007FFF;
-    color: #007FFF;
+    border-color: #ffc107;
+    color: #ffc107;
 }
 
 .btn-primary-outline:hover {
-    background-color: #007FFF;
+    background-color: #ffc107;
+    color:#fff;
 }
 
 .btn-xl {
-    padding: 15px 30px;
-    font-size: 20px;
+    padding: 10px 50px;
+    font-size: 15px;
 }
 
 ::-moz-selection {
