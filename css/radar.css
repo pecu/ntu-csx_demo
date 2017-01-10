@@ -1,3 +1,4 @@
+
 body{
   background: red; /* For browsers that do not support gradients */
   background: -webkit-radial-gradient(#fff,#ffc107 ); /* Safari 5.1-6.0 */
@@ -10,18 +11,35 @@ body{
 }
 
 
+.navbar-default {
+    background-color: rgba(33, 33, 33, 0.9);
+}
+
 .pdb-root {
     width: 100vw;
     width: -moz-calc(100vw - 30px);
     width: -webkit-calc(100vw - 30px);
     width: calc(100vw - 30px);
-    height: 90vh;
-    height: -moz-calc(100vh - 44px - 10px);
-    height: -webkit-calc(100vh - 44px - 10px);
-    height: calc(100vh - 44px - 10px);
     font-family: 'Varela Round', "微軟正黑體", sans-serif;
     box-sizing: border-box;
     padding-bottom: 0;
+}
+
+@media(max-width:48em) {
+    .navbar-default {
+        visibility: hidden;
+    }
+}
+
+@media(min-width:48em) {
+    .pdb-root {
+        height: 90vh;
+        height: -moz-calc(100vh - 74px);
+        height: -webkit-calc(100vh - 74px);
+        height: calc(100vh - 74px);
+        top: 74px;
+        position: relative;
+    }
 }
 
 .pdb-root svg {

@@ -4,7 +4,7 @@ var initEvent = function() {
     var l = link.length;
     var a = 0;
 
-    var COUNT_START = 1 * 5 * 10; // tenths * seconds * hours
+    var COUNT_START = 10 * 5 * 60; // tenths * seconds * hours
     var count = COUNT_START;
     var playing = false;
 
@@ -115,7 +115,7 @@ var initEvent = function() {
     countdown();
 }
 
-var initData = function() {
+var initData = function(callback) {
     var options = {
         api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
         // api: 'https://script.google.com/a/macros/csie.ntu.edu.tw/s/AKfycbx2VJc30mJ_EeQ2zN_8W0EYBoHf5yhyeuflgzx_bl6H/dev',
@@ -126,22 +126,19 @@ var initData = function() {
     queryData(options, function(response) {
 
         if (response.result) {
-            for(var i = 0; i < response.data.length; i++) {
-                // link.push(response.data[i].project_url);
-                link.push(response.data[i].slide_url);
-            }
-
-            $('#data-frame').attr('src', response.data[0].slide_url);
-
-            // 找出 team id 為 1 的資料
-            var team = $.grep(response.data, function(item) {
-                return item.team_id == 1;
-            });
-            $('#output').text(JSON.stringify(team, null, 4));
-
-            initEvent();
-        } else {
-            $('#output').text(JSON.stringify(response, null, 4));
+            callback(response.data);
         }
     });
 }
+
+initData(function(data) {
+    link = [];
+
+    for(var i = 0; i < data.length; i++) {
+        link.push(data[i].slide_url);
+    }
+
+    $('#data-frame').attr('src', data[0].slide_url);
+
+    initEvent();
+});
