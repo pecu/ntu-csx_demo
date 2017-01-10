@@ -26,6 +26,11 @@ var getScore = function(team_id) {
 
     team_id = parseInt(team_id);
 
+    if(isNaN(team_id)) {
+        team_id = 1;
+    }
+
+
     var options = {
         api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
         sheet: 'team_score',
