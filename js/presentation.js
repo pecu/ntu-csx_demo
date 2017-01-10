@@ -5,7 +5,8 @@ var initEvent = function() {
     var l = initEvent.team.length;
     var a = 0;
 
-    var COUNT_START = 10 * 5 * 60; // tenths * seconds * hours
+    // var COUNT_START = 10 * 5 * 60; // tenths * seconds * hours
+    var COUNT_START = 100;
     var count = COUNT_START;
     var playing = false;
 
@@ -113,17 +114,14 @@ var initEvent = function() {
 
     $('#jump').on('click', function() {
         var jump = prompt("輸入要跳轉的組別");
-        a = +jump;
-        if (a < l) {
-            // $('iframe').attr('src', initEvent.team[a].slide_url);
-            changeIframeUrl(a);
-            console.log('第' + (a + 1) + "組");
-        } else {
+        a = jump - 1;
+        if (a >= l) {
             alert("沒這麼多組別，跳至最後一組");
             a = l - 1;
-            // $('iframe').attr('src', initEvent.team[a].slide_url);
             changeIframeUrl(a);
+            console.log('第' + (a + 1) + "組");
         }
+        changeIframeUrl(a);
     });
 
     countdown();
@@ -152,7 +150,11 @@ var initData = function(callback) {
 // 當網頁載入完開始javascript
 $(function() {
 
-
+    var setteamData = function(index) {
+        $('.team-name').text(initEvent.team[index].team_name);
+        $('.course-name').text(initEvent.team[index].course_name);
+        $('.team-index').text("第" + (index + 1) + "組");
+    };
 
     initData(function(data) {
         link = [];
@@ -164,10 +166,12 @@ $(function() {
         }
 
         $('#data-frame').attr('src', initEvent.team[0].slide_url);
-        $('.team-data').text(initEvent.team[0].team_name);
+        // $('.team-data').text(initEvent.team[0].team_name);
+        setteamData(0);
 
         $('#data-frame').on('iframe-src-changed', function() {
-            console.log($(this).attr('data-team-index'));
+            var idx = parseInt($(this).attr('data-team-index'));
+            setteamData(idx);
         });
 
         initEvent();
