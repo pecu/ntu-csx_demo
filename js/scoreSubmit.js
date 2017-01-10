@@ -11,7 +11,7 @@ $('#query').on('click', function() {
 
     var filter = {
         team_id: parseInt($("input[name$='TeamID']")[0].value),
-        reviewer_id: parseInt($("input[name$='JudgeID']")[0].value),
+        reviewer_id: parseInt($("input[name$='ReviewerID']")[0].value),
     };
     var data = {
         score_1: parseFloat($("input[name$='score1']")[0].value),
@@ -40,13 +40,13 @@ $('#query').on('click', function() {
     });
 });
 
-var tid = $.url(document.URL).param('JudgeID');
+var tid = $.url(document.URL).param('ReviewerID');
 //alert(tid);
-$("input[name$='JudgeID']").val(tid);
-//$("input[name$='JudgeName']").val(res.data[this.index].reviewer_name);
+$("input[name$='ReviewerID']").val(tid);
+//$("input[name$='ReviewerName']").val(res.data[this.index].reviewer_name);
 
 
-var optionsJudges = {
+var optionsReviewers = {
     api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
     // api: 'https://script.google.com/a/macros/csie.ntu.edu.tw/s/AKfycbx2VJc30mJ_EeQ2zN_8W0EYBoHf5yhyeuflgzx_bl6H/dev',
     sheet: 'reviewer',
@@ -55,7 +55,7 @@ var optionsJudges = {
     }
 };
 
-queryData(optionsJudges, function(res) {
+queryData(optionsReviewers, function(res) {
     //console.log(res);
     var jlen = res.data.length;
     var foundInd = -1;
@@ -65,27 +65,27 @@ queryData(optionsJudges, function(res) {
         }
     }
     if(foundInd != -1)
-        $("input[name$='JudgeName']").val(res.data[foundInd].reviewer_name);
+        $("input[name$='ReviewerName']").val(res.data[foundInd].reviewer_name);
     else
-        alert("No this JudgeID");
+        alert("No this Reviewer ID");
 });
 
 // queryData(options2, function(res) {
 //     //console.log(res);
 
 //     var jlen = res.data.length;
-//     $("input[name$='JudgeID']").val(res.data[0].reviewer_id);
-//     $("input[name$='JudgeName']").val(res.data[0].reviewer_name);
+//     $("input[name$='ReviewerID']").val(res.data[0].reviewer_id);
+//     $("input[name$='ReviewerName']").val(res.data[0].reviewer_name);
 
 //     for (var i = 0; i < jlen; i++) {
-//         $("#JudgeNames").append($("<option></option>").attr("value", res.data[i].reviewer_name).text(res.data[i].reviewer_name));
+//         $("#ReviewerNames").append($("<option></option>").attr("value", res.data[i].reviewer_name).text(res.data[i].reviewer_name));
 //     }
 
-//     $("#JudgeNames").change(function() {
+//     $("#ReviewerNames").change(function() {
 //         $("option:selected", this).each(function() {
 //             //alert(this.value);
-//             $("input[name$='JudgeID']").val(res.data[this.index].reviewer_id);
-//             $("input[name$='JudgeName']").val(res.data[this.index].reviewer_name);
+//             $("input[name$='ReviewerID']").val(res.data[this.index].reviewer_id);
+//             $("input[name$='ReviewerName']").val(res.data[this.index].reviewer_name);
 //         });
 //     });
 // });
