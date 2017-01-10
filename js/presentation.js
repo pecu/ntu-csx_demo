@@ -5,8 +5,8 @@ var initEvent = function() {
     var l = initEvent.team.length;
     var a = 0;
 
-    // var COUNT_START = 10 * 5 * 60; // tenths * seconds * hours
-    var COUNT_START = 100;
+    var COUNT_START = 10 * 5 * 60; // tenths * seconds * hours
+    // var COUNT_START = 100;
     var count = COUNT_START;
     var playing = false;
 
