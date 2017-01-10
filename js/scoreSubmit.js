@@ -40,7 +40,7 @@ $('#query').on('click', function() {
     });
 });
 
-var tid = $.url(document.URL).param('ReviewerID');
+var tid = $.url(document.URL).param('reviewer_id');
 //alert(tid);
 $("input[name$='ReviewerID']").val(tid);
 //$("input[name$='ReviewerName']").val(res.data[this.index].reviewer_name);
@@ -59,15 +59,18 @@ queryData(optionsReviewers, function(res) {
     //console.log(res);
     var jlen = res.data.length;
     var foundInd = -1;
-    for(var i=0;i<jlen;i++){
-        if(res.data[i].reviewer_id == tid){
+    for (var i = 0; i < jlen; i++) {
+        if (res.data[i].reviewer_id == tid) {
             foundInd = i;
         }
     }
-    if(foundInd != -1)
+    if (foundInd != -1)
         $("input[name$='ReviewerName']").val(res.data[foundInd].reviewer_name);
-    else
-        alert("No this Reviewer ID");
+    else {
+        $("input[name$='ReviewerName']").val(res.data[0].reviewer_name);
+        $("input[name$='ReviewerID']").val(res.data[0].reviewer_id);
+    }
+    // alert("No this Reviewer ID");
 });
 
 // queryData(options2, function(res) {
