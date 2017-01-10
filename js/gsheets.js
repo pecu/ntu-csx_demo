@@ -12,6 +12,7 @@
 function queryData(options, callback) {
     var defaults = {
         action: 'search',
+        apiUrl: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
     };
 
     var params = $.extend({}, defaults, options);
@@ -25,8 +26,9 @@ function queryData(options, callback) {
     }
 
     request = $.ajax({
-        url: options.api,
+        url: options.api || options.apiUrl,
         type: 'post',
+        // dataType: "jsonp",
         data: $.param(params)
     });
 

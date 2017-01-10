@@ -7,10 +7,6 @@
     width: -moz-calc(100vw - 30px);
     width: -webkit-calc(100vw - 30px);
     width: calc(100vw - 30px);
-    height: 90vh;
-    height: -moz-calc(100vh - 44px - 10px);
-    height: -webkit-calc(100vh - 44px - 10px);
-    height: calc(100vh - 44px - 10px);
     font-family: 'Varela Round', "微軟正黑體", sans-serif;
     box-sizing: border-box;
     padding-bottom: 0;
@@ -24,7 +20,12 @@
 
 @media(min-width:48em) {
     .pdb-root {
-        margin-top: 74px;
+        height: 90vh;
+        height: -moz-calc(100vh - 74px);
+        height: -webkit-calc(100vh - 74px);
+        height: calc(100vh - 74px);
+        top: 74px;
+        position: relative;
     }
 }
 
