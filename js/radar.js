@@ -1,5 +1,3 @@
-var team_id = $.url(document.URL).param('team_id');
-
 chart.dimension.radius.fieldName = [];
 chart.dimension.radius.fieldId = [];
 
@@ -13,7 +11,7 @@ var chartData = [
     { "radius": [], "order": "專業技術" }
 ];
 
-var getReviewer = function(level) {
+var getReviewer = function(level, team_id) {
     var options = {
         api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
         sheet: 'reviewer',
@@ -39,8 +37,6 @@ var getReviewer = function(level) {
 
 var getScore = function(team_id) {
 
-
-
     team_id = parseInt(team_id);
 
     if(isNaN(team_id)) {
@@ -57,7 +53,7 @@ var getScore = function(team_id) {
 
     queryData(options, function(response) {
 
-        if (response.result) {
+        if (response.result && response.data.length > 0) {
 
             for (var key in response.data) {
                 chartData[0].radius[key] = response.data[key]['score_1'];
@@ -74,8 +70,44 @@ var getScore = function(team_id) {
             var mychart = new plotdb.view.chart(chart, { data: chartData });
             mychart.attach(document.getElementById("wrapper"));
             mychart.update();
+        } else {
+            $('#wrapper').addClass('hide');
+            $('#no_score').removeClass('hide');
         }
+
+        $('.loader-wrapper').addClass('hide');
     });
 };
 
-getReviewer(0);
+$(document).ready(function () {
+    var team_id = $.url(document.URL).param('team_id');
+
+    var options = {
+        api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
+        sheet: 'team_list',
+    };
+
+    $('.loader-wrapper').removeClass('hide');
+
+    queryData(options, function(response) {
+
+        for(var key in response.data) {
+
+            var select_string = '';
+            if(team_id == response.data[key].team_id) {
+                select_string = 'selected';
+                $('#team_name').text(response.data[key].team_name);
+            }
+            var option = '<option value="' + response.data[key].team_id + '" ' + select_string + '>' + response.data[key].team_name + '</option>';
+            $('#team_lists').append(option);
+        }
+    })
+
+    $('#team_lists').on('change', function() {
+        window.location.href = './radar.html?team_id=' + parseInt($(this).val());
+    })
+
+    getReviewer(0, team_id);
+})
+
+

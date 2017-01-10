@@ -1,7 +1,8 @@
 var link = [];
 
 var initEvent = function() {
-    var l = link.length;
+    // var l = link.length;
+    var l = initEvent.team.length;
     var a = 0;
 
     var COUNT_START = 10 * 5 * 60; // tenths * seconds * hours
@@ -33,6 +34,12 @@ var initEvent = function() {
         countdown();
     }
 
+    function changeIframeUrl(index) {
+        $('iframe').attr('src', initEvent.team[index].slide_url);
+        $('#data-frame').attr('data-team-index', index);
+        $('#data-frame').trigger('iframe-src-changed');
+    }
+
     function countdown() {
         avs = a < l - 1 && a >= 0 ? true : false;
         displayTime();
@@ -47,7 +54,7 @@ var initEvent = function() {
             }
             console.log('第' + (a + 1) + "組");
             if (j) {
-                $('iframe').attr('src', link[++a]);
+                changeIframeUrl(++a);
                 setTimeout(playbtn, 2000);
             }
         } else if (playing) {
@@ -84,8 +91,10 @@ var initEvent = function() {
     $('#next').on('click', function() {
         console.log(avs);
         if (avs) {
-            $('iframe').attr('src', link[++a]);
+            // $('iframe').attr('src', initEvent.team[++a].slide_url);
+            changeIframeUrl(++a);
             console.log('第' + (a + 1) + "組");
+            $('#data-frame').trigger('iframe-src-changed');
         } else {
             return false;
         }
@@ -93,8 +102,10 @@ var initEvent = function() {
 
     $('#pre').on('click', function() {
         if (a > 0) {
-            $('iframe').attr('src', link[--a]);
+            // $('iframe').attr('src', initEvent.team[--a].slide_url);
+            changeIframeUrl(--a);
             console.log('第' + (a + 1) + "組");
+            $('#data-frame').trigger('iframe-src-changed');
         } else {
             return false;
         }
@@ -104,17 +115,19 @@ var initEvent = function() {
         var jump = prompt("輸入要跳轉的組別");
         a = +jump;
         if (a < l) {
-            $('iframe').attr('src', link[a]);
+            // $('iframe').attr('src', initEvent.team[a].slide_url);
+            changeIframeUrl(a);
             console.log('第' + (a + 1) + "組");
         } else {
             alert("沒這麼多組別，跳至最後一組");
             a = l - 1;
-            $('iframe').attr('src', link[a]);
+            // $('iframe').attr('src', initEvent.team[a].slide_url);
+            changeIframeUrl(a);
         }
     });
 
     countdown();
-}
+};
 
 var initData = function(callback) {
     var options = {
@@ -132,18 +145,32 @@ var initData = function(callback) {
             console.log(response);
         }
     });
-}
+};
 
-initData(function(data) {
-    link = [];
-    initEvent.team = [];
 
-    for (var i = 0; i < data.length; i++) {
-        link.push(data[i].slide_url);
-        initEvent.team.push(data[i]);
-    }
 
-    $('#data-frame').attr('src', initEvent.team[0].slide_url);
-    $('.team-data').text(initEvent.team[0].team_name);
-    initEvent();
+// 當網頁載入完開始javascript
+$(function() {
+
+
+
+    initData(function(data) {
+        link = [];
+        initEvent.team = [];
+
+        for (var i = 0; i < data.length; i++) {
+            link.push(data[i].slide_url);
+            initEvent.team.push(data[i]);
+        }
+
+        $('#data-frame').attr('src', initEvent.team[0].slide_url);
+        $('.team-data').text(initEvent.team[0].team_name);
+
+        $('#data-frame').on('iframe-src-changed', function() {
+            console.log($(this).attr('data-team-index'));
+        });
+
+        initEvent();
+    });
+
 });
