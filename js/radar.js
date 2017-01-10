@@ -22,15 +22,18 @@ var chartData = [
 // }
 
 
-var getScore = function(callback) {
+var getScore = function(team_id) {
+
+    team_id = parseInt(team_id);
 
     var options = {
         api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
         sheet: 'team_score',
         filter: {
-            team_id: 1,
+            team_id: team_id,
         }
     };
+
     queryData(options, function(response) {
         if (response.result) {
             for (var key in response.data) {
@@ -59,4 +62,6 @@ var getScore = function(callback) {
     });
 };
 
-getScore();
+var team_id = $.url(document.URL).param('team_id');
+
+getScore(team_id);
