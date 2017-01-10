@@ -33,7 +33,7 @@ header h1{
 }
 .s-block {
   width: 33.3333%;
-  padding: 10px;
+  padding: 20px;
   float:left;
 }
 .s-box-img{
@@ -47,11 +47,14 @@ header h1{
 }
 .w-name{
     font-size: 1.2rem;
+    color :#2a8590;
+}
+.w-name a{
+    color :#2a8590;
 }
 .s-box{
   padding-bottom:0px;
   width: 100%;
-  border: 1px solid #eee;
   border-radius: 3px;
   box-shadow: 15px 15px 20px 0px rgba(46, 61, 73, 0.15);
   border-radius: 5px ;
@@ -448,4 +451,26 @@ img::selection {
 img::-moz-selection {
     color: #fff;
     background: 0 0;
+}
+
+@media(max-width:1024px) {
+    .s-block{
+        width: 50%;
+    }
+}
+
+@media(max-width:768px) {
+    .s-block{
+        width: 100%;
+    }
+    .navbar-toggler{
+        display: none
+    }
+    .navbar-brand{
+        float: none;
+    }
+    #topNav{
+        text-align: center;
+        padding: 20px 0;
+    }
 }
