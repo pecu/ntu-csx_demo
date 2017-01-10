@@ -57,7 +57,7 @@
         <div class="s-block-box" id="team_card_group">
             <div class="s-block" v-for="team in teams">
                 <div class="s-box">
-                    <div class="s-box-img" style="background: url(images/demo.jpg); background-size: cover;">
+                    <div class="s-box-img" :style="{ 'background': 'url(images/screenshot/'+team.img_url+')', 'background-size': 'cover'}">
                         <a :href="team.project_url" target="_blank" class="link-wrapper"></a>
                     </div>
                 </div>
@@ -65,45 +65,17 @@
                     <p class="w-name">
                         <a :href="team.project_url" target="_blank">{{team.team_name}}</a>
                     </p>
-                </div>
-            </div>
-            <div class="s-block" v-for="team in teams">
-                <div class="s-box">
-                    <div class="s-box-img" style="background: url(images/demo.jpg); background-size: cover;">
-                        <a :href="team.project_url" target="_blank" class="link-wrapper"></a>
-                    </div>
-                </div>
-                <div class="s-name">
                     <p class="w-name">
-                        <a :href="team.project_url" target="_blank">{{team.team_name}}</a>
+                        <a :href="team.project_url" target="_blank">投影片</a>
+                    </p>
+                    <p class="w-name">
+                        <a :href="'radar.html?team_id='+team.team_id" target="_blank">分數</a>
+                    </p>
+                    <p class="w-name">
+                        {{team.team_course}}</a>
                     </p>
                 </div>
             </div>
-            <div class="s-block" v-for="team in teams">
-                <div class="s-box">
-                    <div class="s-box-img" style="background: url(images/demo.jpg); background-size: cover;">
-                        <a :href="team.project_url" target="_blank" class="link-wrapper"></a>
-                    </div>
-                </div>
-                <div class="s-name">
-                    <p class="w-name">
-                        <a :href="team.project_url" target="_blank">{{team.team_name}}</a>
-                    </p>
-                </div>
-            </div>
-            <div class="s-block" v-for="team in teams">
-                <div class="s-box">
-                    <div class="s-box-img" style="background: url(images/demo.jpg); background-size: cover;">
-                        <a :href="team.project_url" target="_blank" class="link-wrapper"></a>
-                    </div>
-                </div>
-                <div class="s-name">
-                    <p class="w-name">
-                        <a :href="team.project_url" target="_blank">{{team.team_name}}</a>
-                    </p>
-                </div>
-            </div>
-
             <div class="clearfix"></div>
         </div>
     </div>
