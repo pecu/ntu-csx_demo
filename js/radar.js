@@ -20,9 +20,9 @@ var getReviewer = function(level, team_id) {
         }
     };
 
-    queryData(options, function (res_reviewer) {
+    queryData(options, function(res_reviewer) {
 
-        for(var key_reviewer in res_reviewer.data) {
+        for (var key_reviewer in res_reviewer.data) {
 
             reviewer_id = res_reviewer.data[key_reviewer].reviewer_id;
 
@@ -39,7 +39,7 @@ var getScore = function(team_id) {
 
     team_id = parseInt(team_id);
 
-    if(isNaN(team_id)) {
+    if (isNaN(team_id)) {
         team_id = 1;
     }
 
@@ -79,7 +79,7 @@ var getScore = function(team_id) {
     });
 };
 
-$(document).ready(function () {
+$(document).ready(function() {
     var team_id = $.url(document.URL).param('team_id');
 
     var options = {
@@ -91,23 +91,21 @@ $(document).ready(function () {
 
     queryData(options, function(response) {
 
-        for(var key in response.data) {
+        for (var key in response.data) {
 
             var select_string = '';
-            if(team_id == response.data[key].team_id) {
+            if (team_id == response.data[key].team_id) {
                 select_string = 'selected';
                 $('#team_name').text(response.data[key].team_name);
             }
             var option = '<option value="' + response.data[key].team_id + '" ' + select_string + '>' + response.data[key].team_name + '</option>';
             $('#team_lists').append(option);
         }
-    })
+    });
 
     $('#team_lists').on('change', function() {
         window.location.href = './radar.html?team_id=' + parseInt($(this).val());
-    })
+    });
 
     getReviewer(0, team_id);
-})
-
-
+});
