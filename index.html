@@ -59,12 +59,12 @@
             <div class="s-block" v-for="team in teams">
                 <div class="s-box">
                     <div class="s-box-img" style="background: url(images/demo.jpg); background-size: cover;">
-                        <a :href="team.project_url" class="link-wrapper"></a>
+                        <a :href="team.project_url" target="_blank" class="link-wrapper"></a>
                     </div>
                 </div>
                 <div class="s-name">
                     <p class="w-name">
-                        <a :href="team.project_url">作品名稱</a>
+                        <a :href="team.project_url" target="_blank">作品名稱</a>
                     </p>
                 </div>
             </div>
