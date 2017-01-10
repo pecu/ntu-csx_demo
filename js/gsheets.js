@@ -12,6 +12,7 @@
 function queryData(options, callback) {
     var defaults = {
         action: 'search',
+        api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
     };
 
     var params = $.extend({}, defaults, options);
