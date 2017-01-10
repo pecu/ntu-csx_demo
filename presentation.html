@@ -8,8 +8,8 @@
 
 <body>
     <div class="fullscreen">
-        <div class="qr" style="position: absolute; top: 30px; right: 30px; padding: 3px;background: #fff ;z-index: 11 ; width: 150px;">
-            <img src="./images/ntu-csx.csie.org.png" style="width: 100%;">
+        <div class="team-data">
+            {{team.team_name}}
         </div>
         <iframe id="data-frame" src="" frameborder="0"></iframe>
         <div class="clock">
@@ -24,7 +24,7 @@
         </div>
     </div>
 </body>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
 <script type="text/javascript" src="js/gsheets.js"></script>
 <script type="text/javascript" src="js/presentation.js"></script>
 

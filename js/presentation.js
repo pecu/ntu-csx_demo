@@ -23,6 +23,7 @@ var initEvent = function() {
             playpause.innerHTML = "‖";
         }
     }
+
     function reseting() {
         playing = false;
         playpause.innerHTML = "▶";
@@ -33,7 +34,7 @@ var initEvent = function() {
     }
 
     function countdown() {
-        avs = a < l - 1 && a >=0 ? true : false;
+        avs = a < l - 1 && a >= 0 ? true : false;
         displayTime();
         if (count == 0) {
             playing = false;
@@ -86,28 +87,28 @@ var initEvent = function() {
             $('iframe').attr('src', link[++a]);
             console.log('第' + (a + 1) + "組");
         } else {
-            return false ;
+            return false;
         }
     });
 
     $('#pre').on('click', function() {
-        if (a> 0){
+        if (a > 0) {
             $('iframe').attr('src', link[--a]);
             console.log('第' + (a + 1) + "組");
         } else {
-            return false ;
+            return false;
         }
     });
 
     $('#jump').on('click', function() {
         var jump = prompt("輸入要跳轉的組別");
         a = +jump;
-        if(a < l){
+        if (a < l) {
             $('iframe').attr('src', link[a]);
             console.log('第' + (a + 1) + "組");
-        }else{
+        } else {
             alert("沒這麼多組別，跳至最後一組");
-            a = l-1 ;
+            a = l - 1;
             $('iframe').attr('src', link[a]);
         }
     });
@@ -127,18 +128,22 @@ var initData = function(callback) {
 
         if (response.result) {
             callback(response.data);
+        } else {
+            console.log(response);
         }
     });
 }
 
 initData(function(data) {
     link = [];
+    initEvent.team = [];
 
-    for(var i = 0; i < data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
         link.push(data[i].slide_url);
+        initEvent.team.push(data[i]);
     }
 
-    $('#data-frame').attr('src', data[0].slide_url);
-
+    $('#data-frame').attr('src', initEvent.team[0].slide_url);
+    $('.team-data').text(initEvent.team[0].team_name);
     initEvent();
 });
