@@ -55,6 +55,7 @@ header h1 {
 .w-name {
     font-size: 1.2rem;
     color: #2a8590;
+    margin-bottom: 10px;
 }
 
 .w-name a {
@@ -80,7 +81,7 @@ header h1 {
 
 .w-title {
     text-align: center;
-    padding: 100px 0 0px;
+    /*padding: 100px 0 0px;*/
     color: #454545;
     font-size: 2.5rem;
 }
@@ -93,6 +94,10 @@ header h1 {
     width: 50px;
     border-bottom: 5px solid #ffc107;
     margin: 50px auto 0;
+}
+
+footer {
+    color: #FFF;
 }
 
 

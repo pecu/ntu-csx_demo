@@ -12,10 +12,11 @@
     <!--CSS setup -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css" />
-    <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-
+    <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
     <!-- Customer CSS -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/loader.css" />
     <link rel="stylesheet" href="css/index.css" />
 </head>
 
@@ -28,7 +29,7 @@
                 <h1>臺大 CS+X 課程期末成果發表會</h1>
             </div>
             <div class="btn-start">
-                <a href="#reviewer" class="btn btn-primary-outline btn-xl page-scroll wow fadeInUp m-t-3">開始</a>
+                <a href="#project" class="btn btn-primary-outline btn-xl page-scroll wow fadeInUp" data-wow-delay="1s">開始</a>
             </div>
         </div>
     </header>
@@ -43,51 +44,84 @@
             <div class="collapse navbar-toggleable-sm nav-masthead" id="collapsingNavbar">
                 <ul class="nav navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#reviewer">專案列表</a>
+                        <a class="nav-link page-scroll" href="#project">專案列表</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link page-scroll" href="#teammate">執行團隊</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="works" id="reviewer">
+    <section id="project">
         <div class="w-title">
             <h2>專案列表</h2>
             <div class="separator-s"></div>
         </div>
-        <div class="s-block-box" id="team_card_group">
-            <div class="s-block" v-for="team in teams">
+        <div class="s-block-box" id="project_card_group">
+            <div class="s-block" v-for="project in projects">
                 <div class="s-box">
-                    <div class="s-box-img" :style="{ 'background': 'url(images/screenshot/'+team.img_url+')', 'background-size': 'cover'}">
-                        <a :href="team.project_url" target="_blank" class="link-wrapper"></a>
-                        <!--<a href="#galleryModal" data-toggle="modal" :data-src="team.project_url" target="_blank" class="link-wrapper">-->
+                    <div class="s-box-img" :style="{ 'background': 'url(images/screenshot/'+project.img_url+')', 'background-size': 'cover'}">
+                        <a :href="project.project_url" target="_blank" class="link-wrapper"></a>
                     </div>
                 </div>
                 <div class="s-name">
                     <p class="w-name">
-                        <a :href="team.project_url" target="_blank">{{team.team_name}}</a>
+                        {{project.team_name}}
                     </p>
-                    <p class="w-name">
-                        <a :href="team.slide_url" target="_blank">投影片</a>
+                    <p>
+                        {{project.course_name}}
                     </p>
-                    <p class="w-name">
-                        <a :href="'radar.html?team_id='+team.team_id" target="_blank">分數</a>
-                    </p>
-                    <p class="w-name">
-                        {{team.course_name}}
+                    <p>
+                        <a class="btn btn-warning" :href="project.project_url" target="_blank">網站</a>
+                        <a class="btn btn-warning" :href="project.slide_url" target="_blank">投影片</a>
+                        <a class="btn btn-warning" :href="'radar.html?team_id='+project.team_id" target="_blank">分數</a>
                     </p>
                 </div>
             </div>
             <div class="clearfix"></div>
         </div>
-    </div>
+    </section>
+
+
+    <section id="teammate" class="bg-alt">
+        <div class="container wow fadeInUp">
+            <div class="row align-items-start">
+                <div class="w-title">
+                    <h2>執行團隊</h2>
+                    <!--<div class="separator-s"></div>-->
+                </div>
+                <div class="card-group" id="teammate_card_group">
+
+                    <div class="card wow fadeIn" v-for="worker in teammate">
+                        <img class="card-img-top img-fluid" :src="'images/teammate/' + worker.img_url" alt="Card image cap">
+                        <!--<div class="s-box-img" :style="{ 'background': 'url(images/teammate/'+worker.img_url+')', 'background-size': 'cover'}">-->
+                    </div>
+                    <div class="card-block fadeIn">
+                        <h4 class="card-title">{{worker.name}}</h4>
+                        <p class="card-text">{{worker.description}}</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </section>
 
     <footer id="footer">
         <div class="container">
-            <div class="row">
-                <div class="footer-img"><span><img class="logo" src="images/logo3.png" alt=""></span></div>
-                <span class="pull-right text-muted small">Made by NTU-CSX</a></span>
-
+            <div class="row ">
+                <div class="col-lg-8 align-self-center">
+                    <h2>NTU CS+X</h2>
+                    Co-learning, Co-working, Co-creating<br>
+                </div>
+                <div class="col-lg-auto hidden-md-down">
+                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fntu.csx&tabs=timeline&width=320&height=135&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="240" height="135" style="border:none;overflow:hidden"
+                        scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+                </div>
             </div>
+            <br>
+            <span class="pull-xs-right text-muted small">Made by NTU-CSX</a></span>
     </footer>
 
     <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -104,12 +138,18 @@
             </div>
         </div>
     </div>
+
+    <div class="loader-wrapper hide">
+        <div class="loader"></div>
+    </div>
+
     <!--scripts loaded here-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
     <script src="js/gsheets.js"></script>
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-resource/1.0.3/vue-resource.js"></script>

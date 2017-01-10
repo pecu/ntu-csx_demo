@@ -1,8 +1,7 @@
-var team_card_group = new Vue({
-    el: '#team_card_group',
+var project_card_group = new Vue({
+    el: '#project_card_group',
     data: {
-        teams: [],
-        imgUrl: '',
+        projects: [],
     },
     beforeCreate: function() {
         var options = {
@@ -12,31 +11,32 @@ var team_card_group = new Vue({
                 demo: true
             }
         };
+        $('.loader-wrapper').removeClass('hide');
         queryData(options, function(res) {
-            console.log(res.data);
-            team_card_group.teams = res.data;
+            project_card_group.projects = res.data;
         });
-        // this.getData();
     },
-    // beforeCreate: function() {
-    //     this.$http.post(this.apiUrl, { sheet: 'team_list' })
-    //         .then(function(response) {
-    //             this.$set('teams', response.data);
-    //         })
-    //         .catch(function(response) {
-    //             console.log(response)
-    //         });
-    // },
-    // ready: function() {
-    //     // this.getData();
-    //     console.log("ok");
-    // },
-    // methods: {
-    //     getData: function() {
-    //         console.log("test");
-    //         this.$http.jsonp(this.apiUrl, { sheet: 'team_list' }).then(function(response) {
-    //             this.$set('teams', response.data);
-    //         });
-    //     }
-    // }
+    updated: function() {
+        $('.loader-wrapper').addClass('hide');
+    }
+});
+
+var teammate_card_group = new Vue({
+    el: '#teammate_card_group',
+    data: {
+        teammate: [],
+    },
+    beforeCreate: function() {
+        var options = {
+            api: 'https://script.google.com/macros/s/AKfycbzTfdt_q9aNqvWp7LW9JKy6sZeL9fK-KjDcsuaFdmoLlzYsu0-R/exec',
+            sheet: 'teammate'
+        };
+        $('.loader-wrapper').removeClass('hide');
+        queryData(options, function(res) {
+            teammate_card_group.teammate = res.data;
+        });
+    },
+    updated: function() {
+        $('.loader-wrapper').addClass('hide');
+    }
 });
