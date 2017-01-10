@@ -1,4 +1,4 @@
-var link = [];
+// var link = [];
 
 var initEvent = function() {
     // var l = link.length;
@@ -156,6 +156,8 @@ $(function() {
         $('.team-index').text("第" + (index + 1) + "組");
     };
 
+    $('.loader-wrapper').removeClass('hide');
+
     initData(function(data) {
         link = [];
         initEvent.team = [];
@@ -174,6 +176,7 @@ $(function() {
             setteamData(idx);
         });
 
+        $('.loader-wrapper').addClass('hide');
         initEvent();
     });
 
