@@ -43,7 +43,7 @@
             <div class="collapse navbar-toggleable-sm nav-masthead" id="collapsingNavbar">
                 <ul class="nav navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#two">作品</a>
+                        <a class="nav-link page-scroll" href="#reviewer">專案列表</a>
                     </li>
                 </ul>
             </div>
@@ -59,6 +59,7 @@
                 <div class="s-box">
                     <div class="s-box-img" :style="{ 'background': 'url(images/screenshot/'+team.img_url+')', 'background-size': 'cover'}">
                         <a :href="team.project_url" target="_blank" class="link-wrapper"></a>
+                        <!--<a href="#galleryModal" data-toggle="modal" :data-src="team.project_url" target="_blank" class="link-wrapper">-->
                     </div>
                 </div>
                 <div class="s-name">
@@ -93,9 +94,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body text-xs-center">
+                    <!--<img src="" id="galleryImage" class="center-block img-fluid">-->
+                    <iframe aria-hidden="true" class="center-block" id="data-frame" src="" frameborder="0"></iframe>
                     <p>
                         <br>
-                        <button class="btn btn-primary btn-lg" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+                        <button class="btn btn-primary btn-lg" data-dismiss="modal" aria-hidden="true">關閉 <i class="ion-android-close"></i></button>
                     </p>
                 </div>
             </div>
